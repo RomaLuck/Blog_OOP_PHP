@@ -1,0 +1,16 @@
+<?php require_once "includes/init.php";
+if (!$session->is_signed_in()) {
+    redirect("login.php");
+}
+
+if(empty($_GET["id"])){
+    redirect("photos.php");
+}
+
+$photo = Photo_db::find_by_Id($_GET['id']);
+if($photo){
+    $photo->delete_photo();
+    redirect("photos.php");
+}else{
+    redirect("photos.php");
+}
