@@ -6,12 +6,23 @@ class Session
     private $signed_in;
     public $user_id;
     public $message;
+    public $count;
 
     function __construct()
     {
         session_start();
+        $this->session_count();
         $this->check_the_login();
         $this->check_message();
+    }
+
+    public function session_count()
+    {
+        if(isset($_SESSION['count'])){
+            return $this->count = $_SESSION['count']++;
+        }else{
+            return $_SESSION['count']=1;
+        }
     }
 
     public function is_signed_in()

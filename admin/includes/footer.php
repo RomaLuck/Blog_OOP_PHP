@@ -10,10 +10,41 @@
   <script>
     $(document).ready(function() {
       $('#summernote').summernote({
-        height:300
+        height: 300
       });
     });
   </script>
+  <script type="text/javascript">
+    google.charts.load('current', {
+      'packages': ['corechart']
+    });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+      var data = google.visualization.arrayToDataTable([
+        ['Task', 'Hours per Day'],
+        ['Views',     <?php echo $session->count;?>],
+        ['Comments',  <?php echo Comment::count_all();?>],
+        ['Users',     <?php echo User_db::count_all();?>],
+        ['Photos',    <?php echo Photo_db::count_all();?>]
+
+      ]);
+
+      var options = {
+        legent: 'none',
+        pieSliceText: 'label',
+        title: 'My Daily Activities',
+        backgroundColor: 'transparent'
+      };
+
+      var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+      chart.draw(data, options);
+    }
+  </script>
+
+  </html>
 
   </body>
 
