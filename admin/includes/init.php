@@ -29,3 +29,4 @@ require_once ("photo_db.php");
 require_once ("user_db.php");
 require_once ("comment.php");
 require_once ("database.php");
+require_once ("paginate.php");

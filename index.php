@@ -1,6 +1,16 @@
 <?php require_once("admin/includes/init.php"); ?>
 <?php include("includes/header.php"); ?>
-<?php $photos = Photo_db::find_all(); ?>
+<?php
+$page  = !empty($_GET['page']) ? (int)$_GET['page'] : 1;
+$items_per_page = 4;
+$items_total_count = Photo_db::count_all();
+
+$paginate = new Paginate($page, $items_per_page, $items_total_count);
+$sql = "SELECT * FROM photos LIMIT {$items_per_page} OFFSET {$paginate->offset()}";
+$photos = Photo_db::find_by_query($sql);
+
+// $photos = Photo_db::find_all(); 
+?>
 
 <div class="row">
 
@@ -16,6 +26,32 @@
                             </a>
                         </div>
                     <?php endforeach; ?>
+                </div>
+                <div class="row">
+                    <ul class="pager">
+                        <?php
+                        if ($paginate->page_total() > 1) :
+                            if ($paginate->has_next()) : ?>
+                                <li class='next'><a href="index.php?page=<?php echo $paginate->next(); ?>">next</a></li>
+                        <?php endif;
+                        endif;
+
+                        for ($i=1; $i <= $paginate->page_total(); $i++) { 
+                            if($i==$paginate->current_page){
+                                echo "<li class='active'><a href='index.php?page={$i}'>{$i}</a></li>";
+                            }else{
+                                echo "<li><a href='index.php?page={$i}'>{$i}</a></li>";
+                            }
+                        }
+
+                        if ($paginate->page_total() > 1) :
+                            if ($paginate->has_previous()) : ?>
+                                <li class='previous'><a href="index.php?page=<?php echo $paginate->previous(); ?>">previous</a></li>
+                        <?php endif;
+                        endif;
+                        ?>
+                    </ul>
+
                 </div>
             </div>
         </div>
