@@ -74,7 +74,7 @@ class Photo_db extends Db_object
                 $this->errors[] = "the file directory probably does not have permission";
                 return false;
             }
-            $this->create();
+            // $this->create();
         }
     }
 

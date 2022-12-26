@@ -1,4 +1,5 @@
-<?php include "includes/header.php";
+<?php require_once "includes/header.php";
+require_once "includes/init.php";
 if (!$session->is_signed_in()) {
     redirect("login.php");
 }
@@ -41,13 +42,11 @@ if (isset($_POST['submit'])) {
                 </h1>
                 <div class="col-md-6">
                     <?php echo $message ?>
-                    <form action="upload.php" method="post" enctype="multipart/form-data">
+                    <form action="upload.php" method="POST" enctype="multipart/form-data">
                         <div class="form-group">
-                            <label for=""></label>
                             <input type="text" class="form-control" name="title" id="" aria-describedby="helpId" placeholder="">
                         </div>
                         <div class="form-group">
-                            <label for=""></label>
                             <input type="file" class="form-control-file" name="file_upload" id="" placeholder="" aria-describedby="fileHelpId">
                         </div>
                         <button type="submit" name="submit" class="btn btn-primary">Submit</button>

@@ -138,3 +138,4 @@ class Db_object
         return array_shift($row);
     }
 }
+

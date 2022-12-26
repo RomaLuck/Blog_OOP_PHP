@@ -22,10 +22,10 @@ defined('DS')?null:define('DS',DIRECTORY_SEPARATOR);
 define('SITE_ROOT',DS.'home'.DS.'roman'.DS.'Projects'.DS.'CMS_TEMPLATE_PHP');
 defined('INCLUDES_PATH')?null:define('INCLUDES_PATH',SITE_ROOT.DS.'admin'.DS.'includes');
 
-require_once (INCLUDES_PATH.DS."user_db.php");
-require_once (INCLUDES_PATH.DS."config.php");
-require_once (INCLUDES_PATH.DS."database.php");
-require_once (INCLUDES_PATH.DS."db_object.php");
-require_once (INCLUDES_PATH.DS."photo_db.php");
-require_once (INCLUDES_PATH.DS."session.php");
-require_once (INCLUDES_PATH.DS."comment.php");
+
+require_once ("session.php");
+require_once ("db_object.php");
+require_once ("photo_db.php");
+require_once ("user_db.php");
+require_once ("comment.php");
+require_once ("database.php");
