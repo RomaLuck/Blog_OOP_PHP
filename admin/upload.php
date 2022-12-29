@@ -6,10 +6,10 @@ if (!$session->is_signed_in()) {
 ?>
 <?php
 $message = "";
-if (isset($_POST['submit'])) {
+if (isset($_FILES['file'])) {
     $photo = new Photo_db;
     $photo->title = $_POST['title'];
-    $photo->set_files($_FILES['file_upload']);
+    $photo->set_files($_FILES['file']);
 
     if($photo->save()){
         $message = "Photo uploaded succesfully";
@@ -38,7 +38,7 @@ if (isset($_POST['submit'])) {
             <div class="col-lg-12">
                 <h1 class="page-header">
                     Upload
-                    <small>Subheading</small>
+                    <small></small>
                 </h1>
                 <div class="col-md-6">
                     <?php echo $message ?>
@@ -47,7 +47,7 @@ if (isset($_POST['submit'])) {
                             <input type="text" class="form-control" name="title" id="" aria-describedby="helpId" placeholder="">
                         </div>
                         <div class="form-group">
-                            <input type="file" class="form-control-file" name="file_upload" id="" placeholder="" aria-describedby="fileHelpId">
+                            <input type="file" class="form-control-file" name="file" id="" placeholder="" aria-describedby="fileHelpId">
                         </div>
                         <button type="submit" name="submit" class="btn btn-primary">Submit</button>
                     </form>
@@ -55,6 +55,12 @@ if (isset($_POST['submit'])) {
             </div>
         </div>
         <!-- /.row -->
+        <div class="row">
+<div class="col-lg-12">
+    <form action="upload.php" class="dropzone"></form>
+</div>
+
+        </div>
 
     </div>
     <!-- /.container-fluid -->

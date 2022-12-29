@@ -21,6 +21,7 @@
     <link href="css/sb-admin.css" rel="stylesheet">
 
         <!-- Custom CSS -->
+        <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
         <link href="css/style.css" rel="stylesheet">
 
     <!-- Custom Fonts -->

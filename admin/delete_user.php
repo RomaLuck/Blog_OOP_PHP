@@ -9,7 +9,8 @@ if(empty($_GET["id"])){
 
 $user = User_db::find_by_Id($_GET['id']);
 if($user){
-    $user->delete();
+    $user->delete_photo();
+    $session->message("The photo has been deleted");
     redirect("users.php");
 }else{
     redirect("users.php");

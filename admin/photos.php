@@ -50,7 +50,7 @@ $photos = Photo_db::find_by_query($sql);
                                 <tr>
                                     <td><img src="<?php echo $photo->picture_path(); ?>" alt="">
                                         <div class="picture_actions">
-                                            <a href="delete_photo.php?id=<?php echo $photo->id; ?>">delete</a>
+                                            <a class="delete_link" href="delete_photo.php?id=<?php echo $photo->id; ?>">delete</a>
                                             <a href="edit_photo.php?id=<?php echo $photo->id; ?>">edit</a>
                                             <a href="../photo.php?id=<?php echo $photo->id; ?>">view</a>
                                         </div>

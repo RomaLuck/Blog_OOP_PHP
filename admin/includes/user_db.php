@@ -21,7 +21,7 @@ class User_db extends Db_object
         return empty($this->user_image) ? $this->image_placeholder : $this->upload_directory . DS . $this->user_image;
     }
 
-    public function save_user_and_image()
+    public function upload_photo()
     {
         if (!empty($this->errors)) {
             return false;
@@ -36,10 +36,8 @@ class User_db extends Db_object
             return false;
         }
         if (move_uploaded_file($this->tmp_path, $target_pass)) {
-            if ($this->create()) {
                 unset($this->tmp_path);
                 return true;
-            }
         } else {
             $this->errors[] = "the file directory probably does not have permission";
             return false;
@@ -59,5 +57,30 @@ class User_db extends Db_object
         $sql .= "LIMIT 1";
         $the_result_array = self::find_by_query($sql);
         return !empty($the_result_array) ? array_shift($the_result_array) : false;
+    }
+
+    public function ajax_save_user_image($user_image,$user_id){
+        global $database;
+
+        $user_image = $database->escape_string($user_image);
+        $user_id = $database->escape_string($user_id);
+
+        $this->user_image = $user_image;
+        $this->id = $user_id;
+
+        $sql = "UPDATE ".self::$db_table." SET user_image='{$this->user_image}' WHERE id={$this->id}";
+        $database->query($sql);
+
+        echo $this->image_path_or_placeholder();
+    }
+
+    public function delete_photo()
+    {
+        if ($this->delete()) {
+            $target_pass = SITE_ROOT . DS . 'admin' . DS . $this->upload_directory.DS.$this->user_image;
+            return unlink($target_pass) ? true : false;
+        } else {
+            return false;
+        }
     }
 }

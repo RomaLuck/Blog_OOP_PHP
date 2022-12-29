@@ -1,13 +1,50 @@
-.user_image{
+.user_image {
     width: 62px;
     height: 62px;
 }
 
-.pager .active a{
-    background-color:#000;
+.pager .active a {
+    background-color: #000;
     color: #fff;
 }
-.pager .active a:hover{
-    background-color:#000;
+
+.pager .active a:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+.modal-dialog {
+    width: 90% !important;
+
+
+
+}
+
+.modal-body {
+    overflow: auto;
+    height: 500px !important;
+    min-height: 300px !important;
+}
+
+.modal_thumbnails {
+
+    width: 150px;
+    height: 100px !important;
+}
+
+#set_user_image {
+
+    margin: 10px;
+
+}
+
+
+#modal_sidebar {
+
+    position: fixed !important;
+
+}
+
+#login-id{
     color: #fff;
 }

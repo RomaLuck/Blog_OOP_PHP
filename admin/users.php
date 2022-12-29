@@ -24,11 +24,15 @@ $users = User_db::find_all();
         <!-- Page Heading -->
         <div class="row">
             <div class="col-lg-12">
+            <p class="bg-success">
+                        <?php echo $message; ?>
+                    </p>
                 <h1 class="page-header">
                     Users
                     <small>Subheading</small>
+
                     <div>
-                    <a name="" id="" class="btn btn-primary" href="add_user.php" role="button">New user</a>
+                        <a name="" id="" class="btn btn-primary" href="add_user.php" role="button">New user</a>
                     </div>
                 </h1>
                 <div class="col-md-12">
