@@ -45,7 +45,8 @@ class Db_object
 
     public static function find_by_query($sql)
     {
-        global $database;
+        $database = Database::getInstance();
+        // global $database;
         $result_set  = $database->query($sql);
         $the_object_array = [];
         while ($row = mysqli_fetch_array($result_set)) {
@@ -91,7 +92,8 @@ class Db_object
 
     public function create()
     {
-        global $database;
+        $database = Database::getInstance();
+        // global $database;
         $properties = $this->properties();
         $sql = "INSERT INTO " . static::$db_table . "(" . implode(",", array_keys($properties)) . ")" . "VALUES (
 '" . implode("','", array_values($properties)) . "')";
@@ -105,7 +107,8 @@ class Db_object
 
     public function update()
     {
-        global $database;
+        $database = Database::getInstance();
+        // global $database;
         $properties = $this->properties();
         $properties_pairs = [];
         foreach ($properties as $key => $value) {
@@ -121,7 +124,8 @@ class Db_object
 
     public function delete()
     {
-        global $database;
+        $database = Database::getInstance();
+        // global $database;
         $sql = "DELETE FROM " . static::$db_table . " 
         WHERE id='{$database->escape_string($this->id)}' LIMIT 1";
         $database->query($sql);
@@ -131,7 +135,8 @@ class Db_object
 
     public static function count_all()
     {
-        global $database;
+        $database = Database::getInstance();
+        // global $database;
         $sql = "SELECT COUNT(*) FROM ".static::$db_table;
         $result = $database->query($sql);
         $row = mysqli_fetch_array($result);

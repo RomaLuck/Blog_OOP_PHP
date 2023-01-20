@@ -3,7 +3,8 @@ require_once "config.php";
 
 class Database
 {
-    public $connection;
+    private $connection;
+    private static $instance;
 
     function __construct()
     {
@@ -41,6 +42,15 @@ class Database
     {
         return mysqli_insert_id($this->connection);
     }
+
+    public static function getInstance(): self 
+{
+    if (self::$instance === null) {
+        self::$instance = new self();
+    }
+
+    return self::$instance;
+}
 }
 
-$database = new Database;
+// $database = new Database;

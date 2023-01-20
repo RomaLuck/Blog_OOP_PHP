@@ -47,7 +47,8 @@ class User_db extends Db_object
 
     public static function verify_user($username, $password)
     {
-        global $database;
+        $database = Database::getInstance();
+        // global $database;
         $username = $database->escape_string($username);
         $password = $database->escape_string($password);
 
@@ -60,7 +61,8 @@ class User_db extends Db_object
     }
 
     public function ajax_save_user_image($user_image,$user_id){
-        global $database;
+        $database = Database::getInstance();
+        // global $database;
 
         $user_image = $database->escape_string($user_image);
         $user_id = $database->escape_string($user_id);
